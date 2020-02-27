@@ -15,6 +15,7 @@ class ApiLoginControllerController extends Controller
 {
     public function login(Request $request)
     {
+
         # validation roles
         $rules = [
             "mobile_number"    => "required",
@@ -43,6 +44,11 @@ class ApiLoginControllerController extends Controller
         }
         # chech if user not verified
         if (!Auth::user()->is_verified) {
+            $send_mobile_otp =  Apicontroller::send_mobile_opt($request->mobile_number, $st->verification_code);
+            if ($send_mobile_otp["code"] == 200) {
+            } else {
+                return ApiController::ApiResponse(null, $send_mobile_otp["response"], 404, "error");
+            }
             return ApiController::ApiResponse(compact('token'), ApiController::ErrorHandler("not_verified"), 422, "error");
         }
         # return success response
