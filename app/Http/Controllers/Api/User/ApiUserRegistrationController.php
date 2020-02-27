@@ -49,6 +49,7 @@ class ApiUserRegistrationController extends Controller
             } else {
                 return ApiController::ApiResponse(null, $send_mobile_otp["response"], 404, "error");
              }
+             # get jwt auth and send response
             $user = User::find($st->id);
             $token = JWTAuth::fromUser($user);
             return ApiController::ApiResponse(compact('token'), ApiController::ErrorHandler("data_added"), 200, "data_added");

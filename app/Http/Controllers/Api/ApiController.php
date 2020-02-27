@@ -52,10 +52,6 @@ class ApiController extends Controller
                 ];
 
                 break;
-
-            default:
-                # code...
-                break;
         }
 
         return response($array, $status);
@@ -104,6 +100,7 @@ class ApiController extends Controller
         }
         return $response;
     }
+
     # handle sms response
     public  static function handle_alfa_call_reponse_statuse($statuse)
     {
@@ -112,10 +109,10 @@ class ApiController extends Controller
                 return "success";
                 break;
             case 15:
-                return "you gave entered an invalid number ";
+                return "you have entered an invalid number ";
                 break;
             default:
-                return "opps , please call our support ";
+                return "opps technical error, please call our support ";
                 break;
         }
     }

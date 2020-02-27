@@ -11,7 +11,7 @@ class ApiUserEditController extends Controller
 {
     public function edit_user(Request $request)
     {
-
+        # roles
         $rules = [
             "mobile_number"            => "required|unique:users,id," . $request->id . "|regex:/^(?=[+])(?=.*[0-9])(?!.*[()a-zA-Z-_!@#$&%*.]).{12,15}$/",
             "username"                 => "required",
@@ -33,9 +33,7 @@ class ApiUserEditController extends Controller
         #  save user data
         $st               =  User::find($request->id);
         $st->username     = $request->username;
-        if ($request->has("password")) {
-            $st->password      = $request->password;
-        }
+
         $st->mobile_number = $request->mobile_number;
         $save = $st->save();
 

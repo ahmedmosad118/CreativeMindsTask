@@ -29,6 +29,7 @@ class ApiUserVerifyAccountController extends Controller
         }
 
         $user = User::find($request->id);
+        # if code is valid
         if ($user->verification_code == $request->verification_code) {
             $user->verification_code = null;
             $user->is_verified = 1;

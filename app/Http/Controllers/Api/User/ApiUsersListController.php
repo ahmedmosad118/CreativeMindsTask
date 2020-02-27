@@ -12,7 +12,7 @@ class ApiUsersListController extends Controller
 {
     public function users_list(Request $request)
     {
-        #  if request ajax return  datatale data
+        #  if request ajax return  datatable data
         if ($request->ajax()) {
             return Datatables::eloquent(User::query())
                 ->addColumn('action', function ($row) {

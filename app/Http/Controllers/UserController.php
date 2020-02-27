@@ -8,7 +8,7 @@ use JWTAuth;
 
 class UserController extends Controller
 {
-    # set session
+    # set session in browser
     public function setSession(Request $request)
     {
         $request->session()->forget("token");
