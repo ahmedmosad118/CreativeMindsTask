@@ -2,11 +2,9 @@
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
         <!-- Messages Dropdown Menu -->
-        <li class="nav-item">
-            <a class="nav-link" href="{{url('')}}/logout" data-widget="control-sidebar">
-                <i class="fas fa-sign-in-alt"></i>
-            </a>
-        </li>
+<a class="nav-link" href="{{url('')}}/logout" data-widget="control-sidebar">
+        <i class="fas fa-sign-in-alt"></i> jjnjnjjjnjnjnjn
+    </a>
     </ul>
 </nav>
 <aside class="main-sidebar sidebar-dark-primary elevation-4">

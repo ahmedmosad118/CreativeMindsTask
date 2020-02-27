@@ -44,11 +44,11 @@ class ApiUserRegistrationController extends Controller
         # return response
         if ($save) {
             # call send sms function
-            // $send_mobile_otp =  Apicontroller::send_mobile_opt($request->mobile_number, $st->verification_code);
-            // if ($send_mobile_otp["code"] == 200) {
-            // } else {
-            //     return ApiController::ApiResponse(null, $send_mobile_otp["response"], 404, "error");
-            // }
+            $send_mobile_otp =  Apicontroller::send_mobile_opt($request->mobile_number, $st->verification_code);
+            if ($send_mobile_otp["code"] == 200) {
+            } else {
+                return ApiController::ApiResponse(null, $send_mobile_otp["response"], 404, "error");
+             }
             $user = User::find($st->id);
             $token = JWTAuth::fromUser($user);
             return ApiController::ApiResponse(compact('token'), ApiController::ErrorHandler("data_added"), 200, "data_added");

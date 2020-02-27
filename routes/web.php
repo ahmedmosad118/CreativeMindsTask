@@ -43,6 +43,8 @@ Route::get('/setSession', 'UserController@setSession');
 Route::get('/register', function () {
     return view('register');
 });
+Route::get('/logout', 'UserController@logout');
+
 
 
 Route::get('/verification', 'UserController@verification');

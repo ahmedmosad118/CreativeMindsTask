@@ -98,27 +98,27 @@
                     storeTokenSession(res.data.token);
                 window.location.assign("{{url('/')}}/verification");
                 }
-                }            });
+                }
+             });
 
-})
+   })
 function storeTokenSession(token){
     $.ajax({
-                type: "get",
-                url: "{{url('')}}/setSession?token="+token,
-                headers: {
+            type: "get",
+            url: "{{url('')}}/setSession?token="+token,
+            headers: {
                 'Authorization': "bearer {{session()->get('token')}}",
-                },
-                data: null,
-                cache: false,
-                contentType: false,
-                processData: false,
-                success: function (res) {
-                },
-                error: function (data) {
+            },
+            data: null,
+            cache: false,
+            contentType: false,
+            processData: false,
+
+            error: function (data) {
                 $('.alert-danger').show();
                 $('.alert-danger').append('<p>'+data.responseJSON.api_message.message+'</p>');
-                }
-                });
+            }
+            });
 }
 
     </script>

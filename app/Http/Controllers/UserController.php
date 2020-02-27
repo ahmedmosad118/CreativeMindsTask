@@ -24,4 +24,11 @@ class UserController extends Controller
         $data["id"] = $user->id;
         return view('verification')->with($data);
     }
+    # log out
+    public function logout()
+    {
+        $token = session()->forget("token");
+        Auth::logout();
+        return redirect('/');
+    }
 }

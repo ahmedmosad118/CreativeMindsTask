@@ -20,11 +20,13 @@ class ViewAuthintication
     {
         try {
             $token = session()->get("token");
-            $user = JWTAuth::toUser($token);
-            return $next($request);
+            if ($token) {
+                $user = JWTAuth::toUser($token);
+                return $next($request);
+            }
+            return redirect('/');
         } catch (Exception $e) {
-            return view('login');
+            return redirect('/');
         }
-
     }
 }
