@@ -3,7 +3,7 @@
     <ul class="navbar-nav ml-auto">
         <!-- Messages Dropdown Menu -->
 <a class="nav-link" href="{{url('')}}/logout" data-widget="control-sidebar">
-        <i class="fas fa-sign-in-alt"></i> jjnjnjjjnjnjnjn
+        <i class="fas fa-sign-in-alt"></i>
     </a>
     </ul>
 </nav>
