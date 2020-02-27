@@ -11,31 +11,38 @@
 |
 */
 
+
+
 Route::get('/', function () {
-    return view('login');
+    try {
+        $token = session()->get("token");
+        $user = JWTAuth::toUser($token);
+        return view('/dashboard');
+    } catch (Exception $e) {
+        return view('login');
+    }
 });
 
-// Route::get('/', function () {
-//     if (Auth::check()) {
-//         return redirect()->guest('/user/users-list');
-//     }
-//     return view('login');
-// });
-Route::get('/users/users-list', function () {
-    return view('users.users_list');
+Route::group([
+
+    'middleware' => 'ViewAuthintication',
+
+], function ($router) {
+
+    Route::get('/users/users-list', function () {
+        return view('users.users_list');
+    });
+
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    });
 });
 
-Route::get('/users/users-list', function () {
-    return view('users.users_list');
-});
 
+Route::get('/setSession', 'UserController@setSession');
 Route::get('/register', function () {
     return view('register');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-});
-Route::get('/verification', 'UserController@verification');
 
-Route::get('/setSession', 'UserController@setSession');
+Route::get('/verification', 'UserController@verification');

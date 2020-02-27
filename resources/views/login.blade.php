@@ -83,26 +83,44 @@
             $.ajax({
                 type: "POST",
                 url: action,
-                headers: {
-                'Authorization': "bearer {{session()->get('token')}}",
-                },
                 data: data,
                 cache: false,
                 contentType: false,
                 processData: false,
                 success: function (res) {
-                    // storeTokenSession(res.data.token);
-                    sessionStorage.setItem("token", "");
-                    sessionStorage.setItem("token", res.data.token);
+                    storeTokenSession(res.data.token);
                     window.location.assign("{{url('/')}}/dashboard");
                 },
                 error: function (data) {
                 $('.alert-danger').show();
-                    $('.alert-danger').html('<p>'+data.responseJSON.api_message.message+'</p>');
+                $('.alert-danger').html('<p>'+data.responseJSON.api_message.message+'</p>');
+                if(data.responseJSON.api_message.message == "Your account is not verified"){
+                    storeTokenSession(res.data.token);
+                window.location.assign("{{url('/')}}/verification");
                 }
-            });
+                }            });
 
 })
+function storeTokenSession(token){
+    $.ajax({
+                type: "get",
+                url: "{{url('')}}/setSession?token="+token,
+                headers: {
+                'Authorization': "bearer {{session()->get('token')}}",
+                },
+                data: null,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (res) {
+                },
+                error: function (data) {
+                $('.alert-danger').show();
+                $('.alert-danger').append('<p>'+data.responseJSON.api_message.message+'</p>');
+                }
+                });
+}
+
     </script>
 
 </body>

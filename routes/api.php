@@ -24,7 +24,7 @@ Route::group([
 
 ], function ($router) {
 
-    Route::get('index', 'UserController@users_list');
+    Route::get('index', 'Api\User\ApiUsersListController@users_list');
     Route::get('delete-user/{id}', 'Api\User\ApiDeleteUserController@delete_user');
     Route::get('user-info/{id}', 'Api\User\ApiUserInfoController@user_info');
     Route::post('edit-user', 'Api\User\ApiUserEditController@edit_user');

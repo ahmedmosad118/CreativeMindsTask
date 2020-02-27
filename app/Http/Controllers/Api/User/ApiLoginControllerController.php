@@ -10,6 +10,7 @@ use Tymon\JWTAuth\Exceptions\JWTException;
 use App\Http\Controllers\Api\ApiController;
 use Datatables;
 use App\User;
+
 class ApiLoginControllerController extends Controller
 {
     public function login(Request $request)
@@ -42,7 +43,7 @@ class ApiLoginControllerController extends Controller
         }
         # chech if user not verified
         if (!Auth::user()->is_verified) {
-            return ApiController::ApiResponse(null, ApiController::ErrorHandler("not_verified"), 422, "error");
+            return ApiController::ApiResponse(compact('token'), ApiController::ErrorHandler("not_verified"), 422, "error");
         }
         # return success response
         return ApiController::ApiResponse(compact('token'), ApiController::ErrorHandler("getdata"), 200, "getdata");
