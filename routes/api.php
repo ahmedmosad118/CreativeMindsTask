@@ -13,17 +13,13 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
-Route::post('user/login', 'UserController@login');
+Route::post('user/login', 'Api\User\ApiLoginControllerController@login');
 Route::post('user/verify-account', 'Api\User\ApiUserVerifyAccountController@verify_account');
 Route::post('/user/user-registration', 'Api\User\ApiUserRegistrationController@user_registration');
 
 Route::group([
 
-    // 'middleware' => 'jwt.verify',
+    'middleware' => 'jwt.verify',
     'prefix' => 'user'
 
 ], function ($router) {
@@ -31,4 +27,5 @@ Route::group([
     Route::get('index', 'UserController@users_list');
     Route::get('delete-user/{id}', 'Api\User\ApiDeleteUserController@delete_user');
     Route::get('user-info/{id}', 'Api\User\ApiUserInfoController@user_info');
+    Route::post('edit-user', 'Api\User\ApiUserEditController@edit_user');
 });

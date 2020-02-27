@@ -13,50 +13,6 @@ use App\User;
 class UserController extends Controller
 {
 
-    public function login(Request $request)
-    {
-        # validation roles
-        $rules = [
-            "mobile_number"    => "required",
-            "password"         => "required",
-        ];
-
-        # valdiation messages
-        $messages = [];
-
-        #return valdiation
-        $validate = validator($request->all(), $rules, $messages);
-
-        session()->forget("token");
-
-        # auhtrized user and login
-        $credentials = $request->only('mobile_number', 'password');
-
-        try {
-            // attempt to verify the credentials and create a token for the user
-            if (!$token = JWTAuth::attempt($credentials)) {
-                return response()->json(['error' => 'invalid_credentials'], 401);
-            }
-        } catch (JWTException $e) {
-            // something went wrong whilst attempting to encode the token
-            return response()->json(['error' => 'could_not_create_token'], 500);
-        }
-        # chech if user not verified
-        if (!Auth::user()->is_verified) {
-            return ApiController::ApiResponse(null, ApiController::ErrorHandler("not_verified"), 422, "error");
-        }
-        # return success response
-        return ApiController::ApiResponse(compact('token'), ApiController::ErrorHandler("getdata"), 200, "getdata");
-    }
-
-    # set session
-    public function setSession(Request $request)
-    {
-        session()->forget("token");
-
-        session()->put("token", $request->token);
-        return response()->json(['success' => session()->get("token")], 200);
-    }
 
     # user list api
     public function users_list(Request $request)

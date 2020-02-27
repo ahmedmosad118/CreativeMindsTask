@@ -76,7 +76,7 @@
         $("#user_login").on('submit', function (event) {
 
             event.preventDefault();
-
+            $('.alert-danger').hide();
             var form = $(this);
             var data = new FormData(this);
             var action = form.attr('go')
@@ -84,7 +84,6 @@
                 type: "POST",
                 url: action,
                 headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
                 'Authorization': "bearer {{session()->get('token')}}",
                 },
                 data: data,
@@ -92,37 +91,18 @@
                 contentType: false,
                 processData: false,
                 success: function (res) {
-                    console.log(res.data.token);
-                    storeTokenSession(res.data.token);
-                    window.location.assign("{{url('/')}}/users/users-list");
+                    // storeTokenSession(res.data.token);
+                    sessionStorage.setItem("token", "");
+                    sessionStorage.setItem("token", res.data.token);
+                    window.location.assign("{{url('/')}}/dashboard");
                 },
                 error: function (data) {
                 $('.alert-danger').show();
-                    $('.alert-danger').append('<p>'+data.responseJSON.api_message.message+'</p>');
+                    $('.alert-danger').html('<p>'+data.responseJSON.api_message.message+'</p>');
                 }
             });
 
 })
-function storeTokenSession(token){
-    $.ajax({
-                type: "get",
-                url: "{{url('')}}/setSession?token="+token,
-                headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-                },
-                data: null,
-                cache: false,
-                contentType: false,
-                processData: false,
-                success: function (res) {
-                },
-                error: function (data) {
-                $('.alert-danger').show();
-                $('.alert-danger').append('<p>'+data.responseJSON.api_message.message+'</p>');
-                }
-                });
-}
-
     </script>
 
 </body>

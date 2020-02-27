@@ -84,8 +84,7 @@
                             contentType: false,
                             processData: false,
                             success: function (res) {
-                                alert(action);
-                                window.location.assign("{{url('/')}}/verification");
+                                window.location.assign("{{url('/')}}/dashboard");
                             },
                             error: function (data) {
                                 $('.alert-danger').show();

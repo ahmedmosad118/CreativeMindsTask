@@ -1,3 +1,14 @@
+<nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <!-- Right navbar links -->
+    <ul class="navbar-nav ml-auto">
+        <!-- Messages Dropdown Menu -->
+        <li class="nav-item">
+            <a class="nav-link" href="{{url('')}}/logout" data-widget="control-sidebar">
+                <i class="fas fa-sign-in-alt"></i>
+            </a>
+        </li>
+    </ul>
+</nav>
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">

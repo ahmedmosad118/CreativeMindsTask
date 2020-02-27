@@ -5,6 +5,7 @@
 <head>
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <link rel="stylesheet" href="http://localhost/CreativeMinds/public/src/plugins/fontawesome-free/css/all.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
@@ -40,66 +41,9 @@
 
     <body class="hold-transition sidebar-mini layout-fixed">
         <div class="wrapper">
-            <nav class="main-header navbar navbar-expand navbar-white navbar-light">
 
-
-
-
-                <!-- Right navbar links -->
-                <ul class="navbar-nav ml-auto">
-                    <!-- Messages Dropdown Menu -->
-
-                    <li class="nav-item">
-                        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#">
-                            <i class="fas fa-th-large"></i>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
             <!-- /.navbar -->
-            <aside class="main-sidebar sidebar-dark-primary elevation-4">
-                <!-- Brand Logo -->
-                <a href="index3.html" class="brand-link">
-                    <img src="http://localhost/CreativeMinds/public/src/dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
-                        class="brand-image img-circle elevation-3" style="opacity: .8">
-                    <span class="brand-text font-weight-light">AdminLTE 3</span>
-                </a>
-
-                <!-- Sidebar -->
-                <div class="sidebar">
-                    <!-- Sidebar user panel (optional) -->
-                    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                        <div class="image">
-                            <img src="http://localhost/CreativeMinds/public/src/dist/img/user2-160x160.jpg"
-                                class="img-circle elevation-2" alt="User Image">
-                        </div>
-                        <div class="info">
-                            <a href="#" class="d-block">Alexander Pierce</a>
-                        </div>
-                    </div>
-
-                    <!-- Sidebar Menu -->
-                    <nav class="mt-2">
-                        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                            data-accordion="false">
-                            <!-- Add icons to the links using the .nav-icon class
-                   with font-awesome or any other icon font library -->
-
-
-
-                            <li class="nav-header">Pepole</li>
-                            <li class="nav-item">
-                                <a href="http://localhost/CreativeMinds/public/users/users-list" class="nav-link">
-                                    <i class="nav-icon fas fa-users"></i>
-                                    <p>Users</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                    <!-- /.sidebar-menu -->
-                </div>
-                <!-- /.sidebar -->
-            </aside>
+            @include("includes.sidebar")
             <div class="content-wrapper">
                 <!-- Content Header (Page header) -->
                 <div class="container">
@@ -139,7 +83,8 @@
                                     <div class="form-group">
                                         <label for="name" class="col-sm-4 control-label">Mobile Number</label>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control" id="mobilenumber" name="mobile_number" placeholder="Enter Mobile Number" value=""
+                                            <input type="text" class="form-control" id="mobile_number"
+                                                name="mobile_number" placeholder="Enter Mobile Number" value=""
                                                 maxlength="50" required="">
                                         </div>
                                     </div>
@@ -148,7 +93,7 @@
                                         <label class="col-sm-4 control-label">Password</label>
                                         <div class="col-sm-12">
                                             <input type="password" class="form-control" id="password" name="password"
-                                                placeholder="Enter Password" value="" required="">
+                                                placeholder="Enter Password" value="" required="" autocomplete="false">
                                         </div>
                                     </div>
                                     <div class="col-sm-offset-2 col-sm-10">
@@ -164,49 +109,50 @@
                     </div>
                 </div>
                 <div class="modal fade" id="modal-edit" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h4 class="modal-title"> Edit User</h4>
-                                            </div>
-                                            <div class="alert alert-danger" style="display:none"></div>
-                                            <div class="modal-body">
-                                                <form id="userForm" name="userFormEdit" go="{{url('/api/user/edit-user')}}" class="form-horizontal">
-                                                    <div class="form-group">
-                                                        <input type="text" name="user_id" id="user_id" style="display:none">
-                                                        <label for="name" class="col-sm-4 control-label">User Name</label>
-                                                        <div class="col-sm-12">
-                                                            <input type="text" class="form-control" id="username" name="username"
-                                                                placeholder="Enter User Name" value="" maxlength="100" required="">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="name" class="col-sm-4 control-label">Mobile Number</label>
-                                                        <div class="col-sm-12">
-                                                            <input type="text" class="form-control" id="mobile_number" name="mobile_number"
-                                                                placeholder="Enter Mobile Number" value="" maxlength="50" required="">
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label class="col-sm-4 control-label">Password</label>
-                                                        <div class="col-sm-12">
-                                                            <input type="password" class="form-control" id="password" name="password"
-                                                                placeholder="Enter Password" value="" required="">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-sm-offset-2 col-sm-10">
-                                                        <button type="submit" class="btn btn-primary" id="btn-save" value="create">Save
-                                                        </button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                            <div class="modal-footer">
-
-                                            </div>
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title"> Edit User</h4>
+                            </div>
+                            <div class="alert alert-danger" style="display:none"></div>
+                            <div class="modal-body">
+                                <form id="userEdit" go="{{url('/api/user/edit-user')}}" class="form-horizontal">
+                                    <div class="form-group">
+                                        <input type="text" name="id" id="user_id" style="display:none">
+                                        <label for="name" class="col-sm-4 control-label">User Name</label>
+                                        <div class="col-sm-12">
+                                            <input type="text" class="form-control" id="username" name="username"
+                                                placeholder="Enter User Name" value="" maxlength="100" required="">
                                         </div>
                                     </div>
-                                </div>
+                                    <div class="form-group">
+                                        <label for="name" class="col-sm-4 control-label">Mobile Number</label>
+                                        <div class="col-sm-12">
+                                            <input type="text" class="form-control" id="mobile_number"
+                                                name="mobile_number" placeholder="Enter Mobile Number" value=""
+                                                maxlength="50" required="">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label">Password</label>
+                                        <div class="col-sm-12">
+                                            <input type="password" class="form-control" id="password" name="password"
+                                                placeholder="Enter Password" autocomplete="false">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-offset-2 col-sm-10">
+                                        <button type="submit" class="btn btn-primary" id="btn-save" value="create">Save
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <!-- /.content-header -->
 
                 <!-- Main content -->
@@ -259,13 +205,10 @@ processing: true,
           $.get('{{url('')}}/api/user/user-info/' + user_id, function (response) {
             if(response.api_status){
              var data = response.data;
-             $('#title-error').hide();
-             $('#product_code-error').hide();
-             $('#description-error').hide();
               $('#modal-edit').modal('show');
-              $('#user_id').val(data.id);
-              $('#username').val(data.username);
-              $('#mobilenumber').val(data.mobile_number);
+              $('#modal-edit #user_id').val(data.id);
+              $(' #modal-edit #username').val(data.username);
+              $('#modal-edit #mobile_number').val(data.mobile_number);
               console.log(data.mobile_number);
                 }
           })
@@ -311,6 +254,36 @@ processing: true,
               success: function (data) {
                     $('#userForm').trigger("reset");
                     $('#modal-add').modal('hide');
+                    $('#btn-save').html('Save Changes');
+                    var oTable = $('#laravel_datatable').dataTable();
+                    oTable.fnDraw(false);
+
+              },
+                  error: function (data) {
+                      var response = JSON.parse(data.error().responseText);
+                      handleError(response.api_message.message);
+            }
+          });
+        }
+      })
+    }
+    if ($("#userEdit").length > 0) {
+          $("#userEdit").validate({
+         submitHandler: function(form) {
+          var actionType = $('#btn-save').val();
+          $('#btn-save').html('Sending..');
+         var action ="{{url('/api/user/edit-user')}}";
+
+          $.ajax({
+              data: $('#userEdit').serialize(),
+              headers: {
+                        'Authorization': "bearer {{session()->get('token')}}",
+                        },
+              url: action,
+              type: "POST",
+              dataType: 'json',
+              success: function (data) {
+                    $('#modal-edit').modal('hide');
                     $('#btn-save').html('Save Changes');
                     var oTable = $('#laravel_datatable').dataTable();
                     oTable.fnDraw(false);
