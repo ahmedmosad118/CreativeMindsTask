@@ -88,20 +88,19 @@
                 contentType: false,
                 processData: false,
                 success: function (res) {
-                    storeTokenSession(res.data.token);
+                    storeTokenSession(res.data.token,"dashboard");
                 },
-                error: function (data) {
+                error: function (res) {
                 $('.alert-danger').show();
-                $('.alert-danger').html('<p>'+data.responseJSON.api_message.message+'</p>');
-                if(data.responseJSON.api_message.message == "Your account is not verified"){
-                    storeTokenSession(res.data.token);
-                window.location.assign("{{url('/')}}/verification");
+                $('.alert-danger').html('<p>'+res.responseJSON.api_message.message+'</p>');
+                if(res.responseJSON.api_message.message == "Your account is not verified"){
+                    storeTokenSession(res.responseJSON.data.token , "verification");
                 }
                 }
              });
 
    })
-function storeTokenSession(token){
+function storeTokenSession(token, perfix){
     $.ajax({
             type: "get",
             url: "{{url('')}}/setSession?token="+token,
@@ -113,7 +112,7 @@ function storeTokenSession(token){
             contentType: false,
             processData: false,
                 success: function (res) {
-                    window.location.assign("{{url('/')}}/dashboard");
+                    window.location.assign("{{url('/')}}/"+perfix);
                 },
 
             error: function (data) {

@@ -28,7 +28,7 @@
         <!-- /.login-logo -->
         <div class="card">
             <div class="card-body login-card-body">
-                <p class="login-box-msg"> .</p>
+                <p class="login-box-msg"> Activate Your account</p>
                 <div class="alert alert-danger" style="display:none"></div>
                 <form go="{{url('')}}/api/user/verify-account" id="userVerify">
                     <div class="input-group mb-3">
@@ -49,11 +49,9 @@
                     </div>
                 </form>
 
-                <p class="mt-3 mb-1">
-                    <a href="login.html">Login</a>
-                </p>
+
                 <p class="mb-0">
-                    <a href="register.html" class="text-center">Register a new membership</a>
+                    <a href="{{url("/logout")}}" class="text-center">Login with anther account</a>
                 </p>
             </div>
             <!-- /.login-card-body -->
