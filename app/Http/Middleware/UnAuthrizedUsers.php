@@ -4,18 +4,13 @@ namespace App\Http\Middleware;
 
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
-
+use Auth;
 use Closure;
 
-class ViewAuthintication
+class UnAuthrizedUsers
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     * @return mixed
-     */
+    # this middlearw handle unauthrized users which if user is login ,
+    # he can't access (login , register route )
     public function handle($request, Closure $next)
     {
         try {
@@ -26,13 +21,13 @@ class ViewAuthintication
                 JWTAuth::setToken($token);
                 $claim = JWTAuth::getPayload();
                 if (!$claim) {
-                    return redirect('/');
+                    return $next($request);
                 }
-                return $next($request);
+                return back();
             }
-            return redirect('/');
+            return $next($request);
         } catch (Exception $e) {
-            return redirect('/');
+            return $next($request);
         }
     }
 }

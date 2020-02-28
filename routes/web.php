@@ -13,16 +13,8 @@
 
 
 
-Route::get('/', function () {
-    try {
-        $token = session()->get("token");
-        $user = JWTAuth::toUser($token);
-        return view('/dashboard');
-    } catch (Exception $e) {
-        return view('login');
-    }
-});
 
+# authrized route group
 Route::group([
 
     'middleware' => 'ViewAuthintication',
@@ -38,13 +30,25 @@ Route::group([
     });
 });
 
+# unauthrized route group
+
+Route::group([
+
+    'middleware' => 'UnAuthrizedUsers',
+
+], function ($router) {
+
+
+    Route::get('/', function () {
+        return view('login');
+    });
+    Route::get('/verification', 'UserController@verification');
+
+    Route::get('/register', function () {
+        return view('register');
+    });
+});
+
 
 Route::get('/setSession', 'UserController@setSession');
-Route::get('/register', function () {
-    return view('register');
-});
 Route::get('/logout', 'UserController@logout');
-
-
-
-Route::get('/verification', 'UserController@verification');
