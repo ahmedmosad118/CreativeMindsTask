@@ -27,8 +27,13 @@ class ApiLoginControllerController extends Controller
 
         #return valdiation
         $validate = validator($request->all(), $rules, $messages);
+        #return valdiation
+        $validate = validator($request->all(), $rules, $messages);
+        if ($validate->fails()) {
+            $error = implode(",", $validate->getMessageBag()->all());
+            return ApiController::ApiResponse(null, $error, 422, "error");
+        }
 
-        session()->forget("token");
 
         # auhtrized user and login
         $credentials = $request->only('mobile_number', 'password');

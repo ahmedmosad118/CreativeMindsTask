@@ -13,6 +13,7 @@ class UserController extends Controller
     {
         $request->session()->forget("token");
         $request->session()->put('token', $request->token);
+        session()->save();
         return response()->json(['success' => session()->get("token")], 200);
     }
 
@@ -28,6 +29,7 @@ class UserController extends Controller
     public function logout()
     {
         $token = session()->forget("token");
+        session()->save();
         Auth::logout();
         return redirect('/');
     }
