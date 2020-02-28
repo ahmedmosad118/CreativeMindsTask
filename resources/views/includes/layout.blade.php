@@ -51,32 +51,7 @@
     <script>
         $.widget.bridge('uibutton', $.ui.button)
     </script>
-    <!-- Bootstrap 4 -->
-    <script src="{{url("")}}/src/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- ChartJS -->
-    <script src="{{url("")}}/src/plugins/chart.js/Chart.min.js"></script>
-    <!-- Sparkline -->
-    <script src="{{url("")}}/src/plugins/sparklines/sparkline.js"></script>
-    <!-- JQVMap -->
-    <script src="{{url("")}}/src/plugins/jqvmap/jquery.vmap.min.js"></script>
-    <script src="{{url("")}}/src/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
-    <!-- jQuery Knob Chart -->
-    <script src="{{url("")}}/src/plugins/jquery-knob/jquery.knob.min.js"></script>
-    <!-- daterangepicker -->
-    <script src="{{url("")}}/src/plugins/moment/moment.min.js"></script>
-    <script src="{{url("")}}/src/plugins/daterangepicker/daterangepicker.js"></script>
-    <!-- Tempusdominus Bootstrap 4 -->
-    <script src="{{url("")}}/src/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
-    <!-- Summernote -->
-    <script src="{{url("")}}/src/plugins/summernote/summernote-bs4.min.js"></script>
-    <!-- overlayScrollbars -->
-    <script src="{{url("")}}/src/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-    <!-- AdminLTE App -->
-    <script src="{{url("")}}/src/dist/js/adminlte.js"></script>
-    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="{{url("")}}/src/dist/js/pages/dashboard.js"></script>
-    <!-- AdminLTE for demo purposes -->
-    <script src="{{url("")}}/src/dist/js/demo.js"></script>
+
 </body>
 
 </html>

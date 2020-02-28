@@ -89,7 +89,6 @@
                 processData: false,
                 success: function (res) {
                     storeTokenSession(res.data.token);
-                    window.location.assign("{{url('/')}}/dashboard");
                 },
                 error: function (data) {
                 $('.alert-danger').show();
@@ -113,6 +112,9 @@ function storeTokenSession(token){
             cache: false,
             contentType: false,
             processData: false,
+                success: function (res) {
+                    window.location.assign("{{url('/')}}/dashboard");
+                },
 
             error: function (data) {
                 $('.alert-danger').show();

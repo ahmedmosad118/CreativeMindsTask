@@ -100,7 +100,6 @@
                     processData: false,
                     success: function (res) {
                     storeTokenSession(res.data.token);
-                        window.location.assign("{{url('/')}}/verification");
                     },
                     error: function (data) {
                         $('.alert-danger').show();
@@ -121,6 +120,7 @@
                 contentType: false,
                 processData: false,
                 success: function (res) {
+                    window.location.assign("{{url('/')}}/verification");
                 },
                 error: function (data) {
                 $('.alert-danger').show();

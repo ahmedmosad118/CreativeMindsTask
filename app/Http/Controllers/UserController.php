@@ -11,9 +11,10 @@ class UserController extends Controller
     # set session in browser
     public function setSession(Request $request)
     {
-        $request->session()->forget("token");
-        $request->session()->put('token', $request->token);
+        session()->forget("token");
+        session()->put('token', $request->token);
         session()->save();
+
         return response()->json(['success' => session()->get("token")], 200);
     }
 
@@ -29,7 +30,6 @@ class UserController extends Controller
     public function logout()
     {
         $token = session()->forget("token");
-        session()->save();
         Auth::logout();
         return redirect('/');
     }

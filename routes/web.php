@@ -42,7 +42,6 @@ Route::group([
     Route::get('/', function () {
         return view('login');
     });
-    Route::get('/verification', 'UserController@verification');
 
     Route::get('/register', function () {
         return view('register');
@@ -52,3 +51,4 @@ Route::group([
 
 Route::get('/setSession', 'UserController@setSession');
 Route::get('/logout', 'UserController@logout');
+Route::get('/verification', 'UserController@verification');
