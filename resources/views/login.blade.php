@@ -36,7 +36,7 @@
                         <input type="text" class="form-control" placeholder="Mobile Number" name="mobile_number">
                         <div class="input-group-append">
                             <div class="input-group-text">
-                                <span class="fas fa-envelope"></span>
+                                <span class="fas fas fa-mobile"></span>
                             </div>
                         </div>
                     </div>

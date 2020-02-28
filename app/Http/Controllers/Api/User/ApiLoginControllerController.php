@@ -44,7 +44,13 @@ class ApiLoginControllerController extends Controller
         }
         # chech if user not verified
         if (!Auth::user()->is_verified) {
-            $send_mobile_otp =  Apicontroller::send_mobile_opt($request->mobile_number, $st->verification_code);
+            # update verify code and send it
+            $verification_code = rand(1000, 10000);
+            $user = User::find(Auth::user()->id);
+            $user->verification_code =  $verification_code;
+            $user->save();
+
+            $send_mobile_otp =  Apicontroller::send_mobile_opt($request->mobile_number, $verification_code);
             if ($send_mobile_otp["code"] == 200) {
             } else {
                 return ApiController::ApiResponse(null, $send_mobile_otp["response"], 404, "error");
